@@ -20,12 +20,12 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 
 include_directories(
   ${SHOOTER_SOURCE_DIR}/include
-  ~/apps/sdl-2.0/include/SDL2
+  ~/apps/SDL/include/SDL2
 )
 
 link_directories (
   ${SHOOTER_BINARY_DIR}
-  ~/apps/sdl-2.0/lib
+  ~/apps/SDL/lib
 )
 
 add_executable (shooter
