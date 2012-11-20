@@ -59,11 +59,11 @@ void Game::start()
     
     draw(time);
     
-    ft = timer.millis() - cur;
+    /*ft = timer.millis() - cur;
     
     if (ft < 16) {
       timer.sleep(16 - ft);
-    }
+    }*/
   }
 }
 

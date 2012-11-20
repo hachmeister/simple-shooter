@@ -2,8 +2,10 @@
 
 #include "enemy.h"
 #include "entityfactory.h"
+#include "explosion.h"
 #include "gametime.h"
 #include "player.h"
+#include "projectile.h"
 #include "rect.h"
 #include "star.h"
 
@@ -16,6 +18,9 @@ Shooter::Shooter()
 {
   enemySpawnTime = 1.0f;
   previousSpawnTime = 0;
+  
+  fireTime = 0.15f;
+  previousFireTime = 0;
 }
 
 Shooter::~Shooter()
@@ -101,11 +106,21 @@ void Shooter::input(const GameTime& time)
   
 void Shooter::update(const GameTime& time)
 {
+  Uint8 *state = SDL_GetKeyboardState(NULL);
+  
+  if (state[SDL_SCANCODE_SPACE] && (time.total() - previousFireTime) > fireTime) {
+    Rect rect = player->rect();
+    projectiles.push_back(entityFactory.createProjectile(rect.x() + rect.width(), rect.y() + rect.height()/2 - 5));
+    previousFireTime = time.total();
+  }
+
   if (time.total() - previousSpawnTime > enemySpawnTime) {
     enemies.push_back(entityFactory.createEnemy());
     previousSpawnTime = time.total();
   }
   
+  // ---
+
   for (std::list<Star*>::iterator it = stars.begin(); it != stars.end(); ++it) {
     (*it)->update(time.delta());
   }
@@ -119,7 +134,25 @@ void Shooter::update(const GameTime& time)
     }
   }
   
+  for (std::list<Projectile*>::iterator it = projectiles.begin(); it != projectiles.end(); ++it) {
+    (*it)->update(time.delta());
+    
+    if (!(*it)->active()) {
+      delete *it;
+      it = projectiles.erase(it);
+    }
+  }
+  
   player->update(time.delta());
+  
+  for (std::list<Explosion*>::iterator it = explosions.begin(); it != explosions.end(); ++it) {
+    (*it)->update(time.delta());
+    
+    if (!(*it)->active()) {
+      delete *it;
+      it = explosions.erase(it);
+    }
+  }
   
   // collision
   Rect rect1 = player->rect();
@@ -129,9 +162,32 @@ void Shooter::update(const GameTime& time)
     rect2 = (*it)->rect();
     
     if (rect1.intersect(rect2)) {
-      std::cout << "Collision!\n";
+      addExplosion(*it);
+      it = enemies.erase(it);
+      std::cout << "Player Collision!\n";
     }
   }
+  
+  for (std::list<Projectile*>::iterator it = projectiles.begin(); it != projectiles.end(); ++it) {
+    rect1 = (*it)->rect();
+    
+    for (std::list<Enemy*>::iterator it2 = enemies.begin(); it2 != enemies.end(); ++it2) {
+      rect2 = (*it2)->rect();
+      
+      if (rect1.intersect(rect2)) {
+        addExplosion(*it2);
+        it = projectiles.erase(it);
+        it2 = enemies.erase(it2);
+        std::cout << "Projectile Collision!\n";
+      }
+    }
+  }
+}
+
+void Shooter::addExplosion(Enemy* enemy)
+{
+  Rect rect = enemy->rect();
+  explosions.push_back(entityFactory.createExplosion(rect.x() + (rect.width() - 160) / 2, rect.y() + (rect.height() - 120) / 2));
 }
 
 void Shooter::draw(const GameTime& time)
@@ -148,7 +204,15 @@ void Shooter::draw(const GameTime& time)
     (*it)->draw(graphics);
   }
   
+  for (std::list<Projectile*>::iterator it = projectiles.begin(); it != projectiles.end(); ++it) {
+    (*it)->draw(graphics);
+  }
+  
   player->draw(graphics);
+  
+  for (std::list<Explosion*>::iterator it = explosions.begin(); it != explosions.end(); ++it) {
+    (*it)->draw(graphics);
+  }
   
   graphics.flip();
 }

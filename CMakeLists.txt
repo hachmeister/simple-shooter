@@ -31,10 +31,12 @@ link_directories (
 add_executable (shooter
   src/enemy.cc
   src/entityfactory.cc
+  src/explosion.cc
   src/game.cc
   src/graphics.cc
   src/main.cc
   src/player.cc
+  src/projectile.cc
   src/rect.cc
   src/shooter.cc
   src/sprite.cc

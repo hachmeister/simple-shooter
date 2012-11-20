@@ -1,8 +1,10 @@
 #include "entityfactory.h"
 
 #include "enemy.h"
+#include "explosion.h"
 #include "graphics.h"
 #include "player.h"
+#include "projectile.h"
 #include "sprite.h"
 #include "star.h"
 
@@ -46,6 +48,18 @@ Enemy* EntityFactory::createEnemy()
   int y = rand() % (600 - sprite->height());
   int speed = (rand() % 100) + 360;
   return new Enemy(sprite, 800, y, speed);
+}
+
+Projectile* EntityFactory::createProjectile(int x, int y)
+{
+  Sprite* sprite = createSprite("projectile", "../resources/projectile.bmp");
+  return new Projectile(sprite, x, y, 1440);
+}
+
+Explosion* EntityFactory::createExplosion(int x, int y)
+{
+  Sprite* sprite = createSprite("explosion", "../resources/explosion.bmp");
+  return new Explosion(sprite, 30, x, y, 160, 120, 0.05f);
 }
 
 Sprite* EntityFactory::createSprite(const std::string& key, const char* file)

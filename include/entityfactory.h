@@ -4,8 +4,10 @@
 #include <string>
 
 class Enemy;
+class Explosion;
 class Graphics;
 class Player;
+class Projectile;
 class Sprite;
 class Star;
 
@@ -23,6 +25,10 @@ public:
   Star* createStar();
   
   Enemy* createEnemy();
+  
+  Projectile* createProjectile(int x, int y);
+  
+  Explosion* createExplosion(int x, int y);
   
 private:
   Sprite* createSprite(const std::string& key, const char* file);

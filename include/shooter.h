@@ -7,6 +7,7 @@
 #include <list>
 
 class Enemy;
+class Explosion;
 class GameTime;
 class Player;
 class Star;
@@ -30,6 +31,9 @@ protected:
   virtual void draw(const GameTime& time);
   
 private:
+  void addExplosion(Enemy* enemy);
+  
+private:
   Graphics graphics;
   
   EntityFactory entityFactory;
@@ -42,7 +46,15 @@ private:
   
   std::list<Enemy*> enemies;
   
+  std::list<Projectile*> projectiles;
+  
+  std::list<Explosion*> explosions;
+  
   float enemySpawnTime;
   
   float previousSpawnTime;
+  
+  float fireTime;
+  
+  float previousFireTime;
 };
