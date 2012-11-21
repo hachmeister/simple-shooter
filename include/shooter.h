@@ -3,6 +3,7 @@
 #include "entityfactory.h"
 #include "game.h"
 #include "graphics.h"
+#include "sounds.h"
 
 #include <list>
 
@@ -35,6 +36,8 @@ private:
   
 private:
   Graphics graphics;
+  
+  Sounds sounds;
   
   EntityFactory entityFactory;
   

@@ -112,6 +112,7 @@ void Shooter::update(const GameTime& time)
     Rect rect = player->rect();
     projectiles.push_back(entityFactory.createProjectile(rect.x() + rect.width(), rect.y() + rect.height()/2 - 5));
     previousFireTime = time.total();
+    sounds.playSound("../resources/laser.wav");
   }
 
   if (time.total() - previousSpawnTime > enemySpawnTime) {
@@ -188,6 +189,7 @@ void Shooter::addExplosion(Enemy* enemy)
 {
   Rect rect = enemy->rect();
   explosions.push_back(entityFactory.createExplosion(rect.x() + (rect.width() - 160) / 2, rect.y() + (rect.height() - 120) / 2));
+  sounds.playSound("../resources/explosion.wav");
 }
 
 void Shooter::draw(const GameTime& time)
