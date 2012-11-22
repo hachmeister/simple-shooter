@@ -112,7 +112,7 @@ void Shooter::update(const GameTime& time)
     Rect rect = player->rect();
     projectiles.push_back(entityFactory.createProjectile(rect.x() + rect.width(), rect.y() + rect.height()/2 - 5));
     previousFireTime = time.total();
-    sounds.playSound("../resources/laser.wav");
+    sounds.playSound("../resources/laser.ogg");
   }
 
   if (time.total() - previousSpawnTime > enemySpawnTime) {
@@ -164,6 +164,7 @@ void Shooter::update(const GameTime& time)
     
     if (rect1.intersect(rect2)) {
       addExplosion(*it);
+      delete *it;
       it = enemies.erase(it);
       std::cout << "Player Collision!\n";
     }
@@ -177,7 +178,9 @@ void Shooter::update(const GameTime& time)
       
       if (rect1.intersect(rect2)) {
         addExplosion(*it2);
+        delete *it;
         it = projectiles.erase(it);
+        delete *it2;
         it2 = enemies.erase(it2);
         std::cout << "Projectile Collision!\n";
       }
@@ -189,7 +192,7 @@ void Shooter::addExplosion(Enemy* enemy)
 {
   Rect rect = enemy->rect();
   explosions.push_back(entityFactory.createExplosion(rect.x() + (rect.width() - 160) / 2, rect.y() + (rect.height() - 120) / 2));
-  sounds.playSound("../resources/explosion.wav");
+  sounds.playSound("../resources/explosion.ogg");
 }
 
 void Shooter::draw(const GameTime& time)

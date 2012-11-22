@@ -21,13 +21,11 @@ set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
 include_directories(
   ${SHOOTER_SOURCE_DIR}/include
   ~/apps/SDL/include/SDL2
-  ~/apps/SDL_mixer/include/SDL2
 )
 
 link_directories (
   ${SHOOTER_BINARY_DIR}
   ~/apps/SDL/lib
-  ~/apps/SDL_mixer/lib
 )
 
 add_executable (shooter
@@ -50,5 +48,6 @@ add_executable (shooter
 
 target_link_libraries (shooter
   SDL2
-  SDL2_mixer
+  openal
+  vorbisfile
 )

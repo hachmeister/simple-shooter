@@ -1,10 +1,11 @@
 #pragma once
 
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 #include <map>
 #include <string>
+#include <vector>
 
 class Sounds
 {
@@ -18,5 +19,14 @@ public:
   void playMusic(const std::string& name);
   
 private:
-  std::map<std::string, Mix_Chunk*> sounds;
+  ALuint loadSound(const std::string& name);
+  
+private:
+  ALCdevice* device;
+  
+  ALCcontext* context;
+  
+  std::map<std::string, ALuint> sounds;
+  
+  std::vector<ALuint> channels;
 };
