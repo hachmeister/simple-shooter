@@ -28,26 +28,34 @@ link_directories (
   ~/apps/SDL/lib
 )
 
+add_library(engine SHARED
+  src/core/game.cc
+  src/core/graphics.cc
+  src/core/rect.cc
+  src/core/sounds.cc
+  src/core/sprite.cc
+  src/core/timer.cc
+  src/core/vector2.cc
+)
+
+target_link_libraries (engine
+  SDL2
+  openal
+  vorbisfile
+)
+
 add_executable (shooter
   src/enemy.cc
   src/entityfactory.cc
   src/explosion.cc
-  src/game.cc
-  src/graphics.cc
+  src/introstate.cc
   src/main.cc
   src/player.cc
+  src/playstate.cc
   src/projectile.cc
-  src/rect.cc
-  src/shooter.cc
-  src/sounds.cc
-  src/sprite.cc
   src/star.cc
-  src/timer.cc
-  src/vector2.cc
 )
 
 target_link_libraries (shooter
-  SDL2
-  openal
-  vorbisfile
+  engine
 )

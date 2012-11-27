@@ -1,4 +1,4 @@
-#include "rect.h"
+#include "core/rect.h"
 
 Rect::Rect()
   : xp(0), yp(0), wd(0), ht(0)

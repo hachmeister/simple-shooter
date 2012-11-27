@@ -1,9 +1,9 @@
 #include "explosion.h"
 
-#include "graphics.h"
-#include "rect.h"
-#include "sprite.h"
-#include "vector2.h"
+#include "core/graphics.h"
+#include "core/rect.h"
+#include "core/sprite.h"
+#include "core/vector2.h"
 
 Explosion::Explosion(Sprite* spr, int n, int x, int y, int width, int height, float frameLength)
   : act(true), sprite(spr), num(n), curNum(0), posX(x), posY(y), wd(width), ht(height), fl(frameLength), ft(0)

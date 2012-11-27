@@ -1,4 +1,4 @@
-#include "sprite.h"
+#include "core/sprite.h"
 
 Sprite::Sprite(SDL_Texture* t, int w, int h)
   : tex(t), wd(w), ht(h)

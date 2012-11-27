@@ -1,9 +1,9 @@
 #include "player.h"
 
-#include "graphics.h"
-#include "rect.h"
-#include "sprite.h"
-#include "vector2.h"
+#include "core/graphics.h"
+#include "core/rect.h"
+#include "core/sprite.h"
+#include "core/vector2.h"
 
 #include <iostream>
 

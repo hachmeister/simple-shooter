@@ -1,4 +1,4 @@
-#include "vector2.h"
+#include "core/vector2.h"
 
 Vector2::Vector2(int xx, int yy)
   : xp(xx), yp(yy)

@@ -1,4 +1,4 @@
-#include "sounds.h"
+#include "core/sounds.h"
 
 #include <iostream>
 #include <stdexcept>

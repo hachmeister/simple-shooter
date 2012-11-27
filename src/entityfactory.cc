@@ -2,10 +2,10 @@
 
 #include "enemy.h"
 #include "explosion.h"
-#include "graphics.h"
+#include "core/graphics.h"
 #include "player.h"
 #include "projectile.h"
-#include "sprite.h"
+#include "core/sprite.h"
 #include "star.h"
 
 #include <stdlib.h>

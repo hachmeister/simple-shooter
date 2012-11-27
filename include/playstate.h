@@ -1,9 +1,10 @@
 #pragma once
 
 #include "entityfactory.h"
-#include "game.h"
-#include "graphics.h"
-#include "sounds.h"
+#include "core/game.h"
+#include "core/graphics.h"
+#include "core/sounds.h"
+#include "core/state.h"
 
 #include <list>
 
@@ -15,31 +16,32 @@ class Star;
 
 struct SDL_Texture;
 
-class Shooter : public Game
+class PlayState : public State
 {
 public:
-  Shooter();
+  PlayState();
   
-  ~Shooter();
+  ~PlayState();
   
-protected:
-  virtual void setup();
-  
+  virtual void init(Game* game);
+
   virtual void input(const GameTime& time);
-  
+
   virtual void update(const GameTime& time);
-  
+
   virtual void draw(const GameTime& time);
   
 private:
   void addExplosion(Enemy* enemy);
   
 private:
-  Graphics graphics;
+  Game* game;
+
+  Graphics* graphics;
   
-  Sounds sounds;
+  Sounds* sounds;
   
-  EntityFactory entityFactory;
+  EntityFactory* entityFactory;
   
   SDL_Texture* background;
   

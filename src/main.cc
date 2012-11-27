@@ -1,11 +1,11 @@
-#include <iostream>
+#include "core/game.h"
 
-#include "shooter.h"
+#include "introstate.h"
 
 int main()
 {
-  Shooter shooter;
-  shooter.start();
+  Game game;
+  game.start(new IntroState());
 
   return 0;
 }

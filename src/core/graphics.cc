@@ -1,8 +1,8 @@
-#include "graphics.h"
+#include "core/graphics.h"
 
-#include "rect.h"
-#include "sprite.h"
-#include "vector2.h"
+#include "core/rect.h"
+#include "core/sprite.h"
+#include "core/vector2.h"
 
 #include <stdexcept>
 
@@ -20,6 +20,7 @@ Graphics::Graphics(int width, int height)
   }
   
   renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED);
+  //renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
   if (renderer_ == NULL) {
     throw std::logic_error("SDL_CreateRenderer failed!");

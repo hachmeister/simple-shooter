@@ -1,6 +1,6 @@
 #include "star.h"
 
-#include "graphics.h"
+#include "core/graphics.h"
 
 #include <iostream>
 
