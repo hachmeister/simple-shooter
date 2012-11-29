@@ -5,7 +5,7 @@ class Rect
 public:
   Rect();
   
-  Rect(int x, int y, int w, int h);
+  Rect(int x, int y, int width, int height);
   
   ~Rect();
   
@@ -28,11 +28,11 @@ public:
   bool intersect(const Rect& r) const;
 
 private:
-  int xp;
+  int _x;
   
-  int yp;
+  int _y;
   
-  int wd;
+  int _width;
   
-  int ht;
+  int _height;
 };

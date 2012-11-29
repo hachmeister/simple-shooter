@@ -3,7 +3,7 @@
 class Graphics;
 class Rect;
 class Sprite;
-class Vector2;
+class Point;
 
 class Explosion
 {
@@ -16,7 +16,7 @@ public:
   
   void draw(const Graphics& graphics);
   
-  Vector2 position() const;
+  Point position() const;
   
   Rect rect() const;
   

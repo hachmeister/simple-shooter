@@ -3,7 +3,7 @@
 #include "core/graphics.h"
 #include "core/rect.h"
 #include "core/sprite.h"
-#include "core/vector2.h"
+#include "core/point.h"
 
 Enemy::Enemy(Sprite* spr, float x, float y, float spd)
   : act(true), sprite(spr), posX(x), posY(y), speed(spd)
@@ -25,12 +25,12 @@ void Enemy::update(float dt)
 
 void Enemy::draw(const Graphics& graphics)
 {
-  graphics.drawSprite(sprite, Rect(0, 0, sprite->width(), sprite->height()), Vector2(posX, posY));
+  graphics.drawSprite(sprite, Rect(0, 0, sprite->width(), sprite->height()), Point(posX, posY));
 }
 
-Vector2 Enemy::position() const
+Point Enemy::position() const
 {
-  return Vector2(posX, posY);
+  return Point(posX, posY);
 }
 
 Rect Enemy::rect() const

@@ -2,7 +2,7 @@
 
 #include "core/rect.h"
 #include "core/sprite.h"
-#include "core/vector2.h"
+#include "core/point.h"
 
 #include <stdexcept>
 
@@ -45,7 +45,7 @@ void Graphics::clear()
   SDL_RenderClear(renderer_);
 }
 
-void Graphics::drawSprite(Sprite* sprite, const Rect& src, const Vector2& dest) const
+void Graphics::drawSprite(Sprite* sprite, const Rect& src, const Point& dest) const
 {
   SDL_Rect srcRect = {src.x(), src.y(), src.width(), src.height()};
   SDL_Rect destRect = {dest.x(), dest.y(), src.width(), src.height()};

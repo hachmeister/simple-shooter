@@ -3,7 +3,7 @@
 #include "core/graphics.h"
 #include "core/rect.h"
 #include "core/sprite.h"
-#include "core/vector2.h"
+#include "core/point.h"
 
 #include <iostream>
 
@@ -47,12 +47,12 @@ void Player::update(float dt)
 
 void Player::draw(const Graphics& graphics)
 {
-  graphics.drawSprite(sprite, Rect(0, 0, sprite->width(), sprite->height()), Vector2(posX, posY));
+  graphics.drawSprite(sprite, Rect(0, 0, sprite->width(), sprite->height()), Point(posX, posY));
 }
 
-Vector2 Player::position() const
+Point Player::position() const
 {
-  return Vector2(posX, posY);
+  return Point(posX, posY);
 }
 
 Rect Player::rect() const

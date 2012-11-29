@@ -3,7 +3,7 @@
 #include "core/graphics.h"
 #include "core/rect.h"
 #include "core/sprite.h"
-#include "core/vector2.h"
+#include "core/point.h"
 
 Explosion::Explosion(Sprite* spr, int n, int x, int y, int width, int height, float frameLength)
   : act(true), sprite(spr), num(n), curNum(0), posX(x), posY(y), wd(width), ht(height), fl(frameLength), ft(0)
@@ -38,12 +38,12 @@ void Explosion::draw(const Graphics& graphics)
     return;
   }
 
-  graphics.drawSprite(sprite, Rect(curNum * wd, 0, wd, ht), Vector2(posX, posY));
+  graphics.drawSprite(sprite, Rect(curNum * wd, 0, wd, ht), Point(posX, posY));
 }
 
-Vector2 Explosion::position() const
+Point Explosion::position() const
 {
-  return Vector2(posX, posY);
+  return Point(posX, posY);
 }
 
 Rect Explosion::rect() const

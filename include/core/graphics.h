@@ -4,7 +4,7 @@
 
 class Rect;
 class Sprite;
-class Vector2;
+class Point;
 
 class Graphics
 {
@@ -15,7 +15,7 @@ public:
   
   void clear();
   
-  void drawSprite(Sprite* sprite, const Rect& src, const Vector2& dest) const;
+  void drawSprite(Sprite* sprite, const Rect& src, const Point& dest) const;
   
   void destroyTexture(SDL_Texture* texture);
   

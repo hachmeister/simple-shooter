@@ -1,12 +1,12 @@
 #include "core/rect.h"
 
 Rect::Rect()
-  : xp(0), yp(0), wd(0), ht(0)
+  : _x(0), _y(0), _width(0), _height(0)
 {
 }
 
-Rect::Rect(int xx, int yy, int w, int h)
-  : xp(xx), yp(yy), wd(w), ht(h)
+Rect::Rect(int x, int y, int width, int height)
+  : _x(x), _y(y), _width(width), _height(height)
 {
 }
 
@@ -16,59 +16,59 @@ Rect::~Rect()
 
 int Rect::x() const
 {
-  return xp;
+  return _x;
 }
 
 int Rect::y() const
 {
-  return yp;
+  return _y;
 }
 
 int Rect::width() const
 {
-  return wd;
+  return _width;
 }
 
 int Rect::height() const
 {
-  return ht;
+  return _height;
 }
 
-void Rect::setX(int xx)
+void Rect::setX(int x)
 {
-  xp = xx;
+  _x = x;
 }
 
-void Rect::setY(int yy)
+void Rect::setY(int y)
 {
-  yp = yy;
+  _y = y;
 }
 
-void Rect::setWidth(int w)
+void Rect::setWidth(int width)
 {
-  wd = w;
+  _width = width;
 }
 
-void Rect::setHeight(int h)
+void Rect::setHeight(int height)
 {
-  ht = h;
+  _height = height;
 }
 
 bool Rect::intersect(const Rect& r) const
 {
-  if (yp > (r.yp + r.ht - 1)) {
+  if (_y > (r._y + r._height - 1)) {
     return false;
   }
   
-  if ((yp + ht - 1) < r.yp) {
+  if ((_y + _height - 1) < r._y) {
     return false;
   }
   
-  if (xp > (r.xp + r.wd - 1)) {
+  if (_x > (r._x + r._width - 1)) {
     return false;
   }
   
-  if ((xp + wd - 1) < r.xp) {
+  if ((_x + _width - 1) < r._x) {
     return false;
   }
   

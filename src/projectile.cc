@@ -1,9 +1,9 @@
 #include "projectile.h"
 
 #include "core/graphics.h"
+#include "core/point.h"
 #include "core/rect.h"
 #include "core/sprite.h"
-#include "core/vector2.h"
 
 Projectile::Projectile(Sprite* spr, float x, float y, float spd)
   : act(true), sprite(spr), posX(x), posY(y), speed(spd)
@@ -25,12 +25,12 @@ void Projectile::update(float dt)
 
 void Projectile::draw(const Graphics& graphics)
 {
-  graphics.drawSprite(sprite, Rect(0, 0, sprite->width(), sprite->height()), Vector2(posX, posY));
+  graphics.drawSprite(sprite, Rect(0, 0, sprite->width(), sprite->height()), Point(posX, posY));
 }
 
-Vector2 Projectile::position() const
+Point Projectile::position() const
 {
-  return Vector2(posX, posY);
+  return Point(posX, posY);
 }
 
 Rect Projectile::rect() const

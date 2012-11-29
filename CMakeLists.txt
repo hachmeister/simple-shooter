@@ -31,11 +31,15 @@ link_directories (
 add_library(engine SHARED
   src/core/game.cc
   src/core/graphics.cc
+  src/core/point.cc
+  src/core/pointf.cc
   src/core/rect.cc
+  src/core/rectf.cc
+  src/core/size.cc
+  src/core/sizef.cc
   src/core/sounds.cc
   src/core/sprite.cc
   src/core/timer.cc
-  src/core/vector2.cc
 )
 
 target_link_libraries (engine
