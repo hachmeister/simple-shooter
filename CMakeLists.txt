@@ -29,6 +29,7 @@ link_directories (
 )
 
 add_library(engine SHARED
+  src/core/animation.cc
   src/core/game.cc
   src/core/graphics.cc
   src/core/point.cc
@@ -61,5 +62,14 @@ add_executable (shooter
 )
 
 target_link_libraries (shooter
+  engine
+)
+
+add_executable (spritebatch
+  src/sprite_test/batchstate.cc
+  src/sprite_test/main.cc
+)
+
+target_link_libraries (spritebatch
   engine
 )

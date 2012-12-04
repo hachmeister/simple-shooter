@@ -16,6 +16,12 @@ public:
   
   void stop();
   
+  void pause();
+  
+  void resume();
+  
+  bool is_paused();
+  
   void changeState(State* state);
   
   Graphics* graphics();
@@ -28,6 +34,8 @@ private:
   Sounds s;
   
   bool running;
+  
+  bool _paused;
   
   State* current;
   

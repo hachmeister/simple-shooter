@@ -7,8 +7,9 @@
 
 #include <iostream>
 
-Player::Player(Sprite* spr, float x, float y, float spd)
-  : sprite(spr), posX(x), posY(y), speed(spd)
+Player::Player(Sprite* spr, float x, float y, float spd) :
+  sprite(spr), posX(x), posY(y), speed(spd),
+  moveLeft(false), moveRight(false), moveUp(false), moveDown(false)
 {
 }
 

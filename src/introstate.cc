@@ -37,6 +37,9 @@ void IntroState::input(const GameTime& time)
           case SDLK_SPACE:
             game->changeState(new PlayState());
             break;
+          case SDLK_f:
+            graphics->toggleFullscreen();
+            break;
           default:
             break;
         }

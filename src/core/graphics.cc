@@ -14,6 +14,8 @@ Graphics::Graphics(int width, int height)
   }
   
   window_ = SDL_CreateWindow("Shooter", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, 0);
+  //window_ = SDL_CreateWindow("Shooter", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_FULLSCREEN);
+  //window_ = SDL_CreateWindow("Shooter", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_BORDERLESS | SDL_WINDOW_RESIZABLE);
   
   if (window_ == NULL) {
     throw std::logic_error("SDL_CreateWindow failed!");
@@ -52,6 +54,21 @@ void Graphics::drawSprite(Sprite* sprite, const Rect& src, const Point& dest) co
   SDL_RenderCopy(renderer_, sprite->texture(), &srcRect, &destRect);
 }
 
+void Graphics::drawTexture(SDL_Texture* texture, const Rect& src, const Point& dest) const
+{
+  SDL_Rect srcRect = {src.x(), src.y(), src.width(), src.height()};
+  SDL_Rect destRect = {dest.x(), dest.y(), src.width(), src.height()};
+  SDL_RenderCopy(renderer_, texture, &srcRect, &destRect);
+}
+  
+void Graphics::drawTexture(SDL_Texture* texture, const Rect& src, const Rect& dest, float scale, float angle) const
+{
+  SDL_Rect srcRect = {src.x(), src.y(), src.width(), src.height()};
+  SDL_Rect destRect = {dest.x(), dest.y(), (float)dest.width()*scale, (float)dest.height()*scale};
+  SDL_Point p = {32, 32};
+  SDL_RenderCopyEx(renderer_, texture, &srcRect, &destRect, angle, &p, SDL_FLIP_NONE);
+}
+  
 void Graphics::drawTexture(SDL_Texture* texture, int x, int y) const
 {
   Uint32 format;
@@ -107,4 +124,23 @@ SDL_Texture* Graphics::loadBMP(const char* file)
   SDL_FreeSurface(surface);
   
   return texture;
+}
+
+void Graphics::toggleFullscreen()
+{
+  Uint32 flags = SDL_GetWindowFlags(window_);
+  
+  if (flags & SDL_WINDOW_MAXIMIZED) {
+    SDL_RestoreWindow(window_);
+  }
+  else {
+    SDL_MaximizeWindow(window_);
+  }
+  
+  /*if (flags & SDL_WINDOW_FULLSCREEN) {
+    SDL_SetWindowFullscreen(window_, SDL_FALSE);
+  }
+  else {
+    SDL_SetWindowFullscreen(window_, SDL_TRUE);
+  }*/
 }

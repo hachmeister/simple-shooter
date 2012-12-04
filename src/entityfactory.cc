@@ -1,15 +1,19 @@
 #include "entityfactory.h"
 
+#include "core/animation.h"
+#include "core/graphics.h"
+#include "core/sprite.h"
+
 #include "enemy.h"
 #include "explosion.h"
-#include "core/graphics.h"
 #include "player.h"
 #include "projectile.h"
-#include "core/sprite.h"
 #include "star.h"
 
 #include <stdlib.h>
 #include <time.h>
+
+#include <iostream>
 
 EntityFactory::EntityFactory(Graphics& g)
   : graphics(g)
@@ -58,7 +62,14 @@ Projectile* EntityFactory::createProjectile(int x, int y)
 
 Explosion* EntityFactory::createExplosion(int x, int y)
 {
-  Sprite* sprite = createSprite("explosion", "../resources/explosion.bmp");
+  //Sprite* sprite = createSprite("explosion", "../resources/explosion.bmp");
+  
+  SDL_Texture* texture = getTexture("explosion", "../resources/explosion.bmp");
+  
+//Animation::Animation(SDL_Texture* texture, int width, int height, int columns, int frames, float length) :
+  Animation* animation = new Animation(texture, 100, 100, 5, 23, 1.5f);
+  Sprite* sprite = new Sprite(animation);
+  
   return new Explosion(sprite, 30, x, y, 160, 120, 0.05f);
 }
 

@@ -8,7 +8,7 @@
 #include "core/timer.h"
 
 Game::Game()
-  : g(800, 600), running(false), current(0), next(0)
+  : g(1280, 800), running(false), _paused(false), current(0), next(0)
 {
 }
 
@@ -55,7 +55,7 @@ void Game::start(State* state)
     
     current->input(time);
     
-    if (time.delta() > 0) {
+    if (time.delta() > 0 && !_paused) {
       current->update(time);
     }
     
@@ -79,6 +79,21 @@ void Game::start(State* state)
 void Game::stop()
 {
   running = false;
+}
+
+void Game::pause()
+{
+  _paused = true;
+}
+
+void Game::resume()
+{
+  _paused = false;
+}
+
+bool Game::is_paused()
+{
+  return _paused;
 }
 
 void Game::changeState(State* state)

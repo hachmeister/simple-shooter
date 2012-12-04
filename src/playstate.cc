@@ -79,6 +79,14 @@ void PlayState::input(const GameTime& time)
           case SDLK_d:
             player->setMoveRight(true);
             break;
+          case SDLK_p: {
+            if (game->is_paused()) {
+              game->resume();
+            }
+            else {
+              game->pause();
+            }
+          }
           default:
             break;
         }

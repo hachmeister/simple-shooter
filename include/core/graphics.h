@@ -17,11 +17,17 @@ public:
   
   void drawSprite(Sprite* sprite, const Rect& src, const Point& dest) const;
   
+  void drawTexture(SDL_Texture* texture, const Rect& src, const Point& dest) const;
+  
+  void drawTexture(SDL_Texture* texture, const Rect& src, const Rect& dest, float scale, float angle) const;
+
   void destroyTexture(SDL_Texture* texture);
   
   void drawTexture(SDL_Texture* texture, int x, int y) const;
   
   void drawTexture(SDL_Texture* texture, int srcX, int srcY, int srcW, int srcH, int destX, int destY) const;
+  
+  void toggleFullscreen();
 
   void flip();
   

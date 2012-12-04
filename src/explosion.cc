@@ -12,6 +12,7 @@ Explosion::Explosion(Sprite* spr, int n, int x, int y, int width, int height, fl
 
 Explosion::~Explosion()
 {
+  delete sprite;
 }
 
 void Explosion::update(float dt)
@@ -20,7 +21,9 @@ void Explosion::update(float dt)
     return;
   }
   
-  ft += dt;
+  sprite->update(dt);
+  
+  /*ft += dt;
   
   if (ft > fl) {
     ft -= fl;
@@ -29,7 +32,7 @@ void Explosion::update(float dt)
   
   if (curNum >= num) {
     act = false;
-  }
+  }*/
 }
 
 void Explosion::draw(const Graphics& graphics)
@@ -37,8 +40,10 @@ void Explosion::draw(const Graphics& graphics)
   if (!act) {
     return;
   }
+  
+  sprite->draw(graphics, Point(posX, posY));
 
-  graphics.drawSprite(sprite, Rect(curNum * wd, 0, wd, ht), Point(posX, posY));
+  //graphics.drawSprite(sprite, Rect(curNum * wd, 0, wd, ht), Point(posX, posY));
 }
 
 Point Explosion::position() const
